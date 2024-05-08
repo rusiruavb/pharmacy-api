@@ -3,7 +3,7 @@ import { IsNotEmpty, IsNumber, IsPhoneNumber, IsString } from 'class-validator';
 export class UpdateUserDto {
   @IsNumber()
   @IsNotEmpty()
-  userId: number;
+  id: number;
 
   @IsString()
   @IsNotEmpty()
@@ -16,6 +16,8 @@ export class UpdateUserDto {
   @IsString()
   @IsNotEmpty()
   userName: string;
+
+  password?: string;
 
   @IsPhoneNumber()
   @IsNotEmpty()

@@ -4,7 +4,13 @@ import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 
 @Module({
-  imports: [JwtModule],
+  imports: [
+    JwtModule.register({
+      global: true,
+      secret: 'pharmacy-secret-key',
+      signOptions: { expiresIn: '60s' },
+    }),
+  ],
   providers: [AuthService],
   controllers: [AuthController],
 })

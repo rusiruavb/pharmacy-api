@@ -22,7 +22,7 @@ export class AuthService {
       const user = await this.dataSource.manager.findOne(User, {
         where: { userName: username },
         select: ['id', 'userName', 'password'],
-        relations: ['roles', 'roles.permissions'],
+        relations: ['role', 'role.permissions'],
       });
 
       if (!user) {
