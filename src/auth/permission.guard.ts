@@ -1,4 +1,9 @@
-import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import {
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  ForbiddenException,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 
@@ -18,10 +23,21 @@ export class PermissionsGuard implements CanActivate {
 
     const request = context.switchToHttp().getRequest();
     const token = request.headers.authorization?.split(' ')[1];
+
+    if (!token) {
+      throw new ForbiddenException('Unauthorized');
+    }
+
     const decoded = this.jwtService.decode(token) as any;
 
-    return requiredPermissions.every((perm) =>
+    const isPermissionMachine = requiredPermissions.every((perm) =>
       decoded.permissions?.includes(perm),
     );
+
+    if (!isPermissionMachine) {
+      throw new ForbiddenException('Permission denied');
+    }
+
+    return true;
   }
 }

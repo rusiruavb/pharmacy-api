@@ -57,9 +57,7 @@ export class RoleService {
 
   async getRoles() {
     try {
-      return await this.dataSource.manager.find(Role, {
-        relations: ['permissions'],
-      });
+      return await this.dataSource.manager.find(Role);
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;

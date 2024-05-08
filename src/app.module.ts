@@ -10,6 +10,7 @@ import { Role } from './role/role.entity';
 import { Permission } from './permission/permission.entity';
 import { RoleModule } from './role/role.module';
 import { PermissionModule } from './permission/permission.module';
+import { Medicine } from './medicine/medicine.entity';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { PermissionModule } from './permission/permission.module';
       type: 'sqlite',
       database: 'db/pharmacydb',
       synchronize: true,
-      entities: [User, Role, Permission],
+      entities: [User, Role, Permission, Medicine],
     }),
     UserModule,
     AuthModule,

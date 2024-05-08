@@ -3,7 +3,6 @@ import {
   HttpStatus,
   Injectable,
   NotFoundException,
-  UnauthorizedException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { DataSource } from 'typeorm';
@@ -64,10 +63,6 @@ export class UserService {
         throw error;
       }
 
-      if (error instanceof UnauthorizedException) {
-        throw error;
-      }
-
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR, {
         cause: new Error(JSON.stringify(error)),
       });
@@ -99,10 +94,6 @@ export class UserService {
         throw error;
       }
 
-      if (error instanceof UnauthorizedException) {
-        throw error;
-      }
-
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR, {
         cause: new Error(JSON.stringify(error)),
       });
@@ -119,10 +110,6 @@ export class UserService {
       return users;
     } catch (error) {
       if (error instanceof NotFoundException) {
-        throw error;
-      }
-
-      if (error instanceof UnauthorizedException) {
         throw error;
       }
 
@@ -190,10 +177,6 @@ export class UserService {
         throw error;
       }
 
-      if (error instanceof UnauthorizedException) {
-        throw error;
-      }
-
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR, {
         cause: new Error(JSON.stringify(error)),
       });
@@ -232,10 +215,6 @@ export class UserService {
         throw error;
       }
 
-      if (error instanceof UnauthorizedException) {
-        throw error;
-      }
-
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR, {
         cause: new Error(JSON.stringify(error)),
       });
@@ -271,10 +250,6 @@ export class UserService {
       await queryRunner.rollbackTransaction();
 
       if (error instanceof NotFoundException) {
-        throw error;
-      }
-
-      if (error instanceof UnauthorizedException) {
         throw error;
       }
 
