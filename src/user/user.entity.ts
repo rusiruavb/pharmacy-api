@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
   ManyToOne,
 } from 'typeorm';
-import { Role } from './role.entity';
+import { Role } from '../role/role.entity';
 
 @Entity('users')
 export class User {

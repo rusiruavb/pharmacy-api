@@ -6,8 +6,10 @@ import { AuthModule } from './auth/auth.module';
 import { MedicineModule } from './medicine/medicine.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/user.entity';
-import { Role } from './user/role.entity';
-import { Permission } from './user/permission.entity';
+import { Role } from './role/role.entity';
+import { Permission } from './permission/permission.entity';
+import { RoleModule } from './role/role.module';
+import { PermissionModule } from './permission/permission.module';
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { Permission } from './user/permission.entity';
     UserModule,
     AuthModule,
     MedicineModule,
+    RoleModule,
+    PermissionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
