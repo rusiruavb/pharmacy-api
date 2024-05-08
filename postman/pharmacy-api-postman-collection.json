@@ -1,0 +1,632 @@
+{
+	"info": {
+		"_postman_id": "9972d419-14c9-4c5e-b4cf-801655d41d9c",
+		"name": "Pharmacy API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34788680"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Chamal\",\n  \"lastName\": \"Ranasighe\",\n  \"userName\": \"chamal\",\n  \"phoneNumber\": \"+94776621324\",\n  \"password\": \"chamal98\",\n  \"roleId\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/user/create",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"firstName\": \"Rusiru\",\n  \"lastName\": \"Bandara Updated\",\n  \"userName\": \"rusiruavb\",\n  \"phoneNumber\": \"+94776621324\",\n  \"roleId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/user/update",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const accessToken = pm.response.json().access_token;",
+									"",
+									"pm.environment.set(\"access_token\", accessToken);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"nimal\",\n  \"password\": \"nimal98\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": \"rusiruavb\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/user/all",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Soft Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/user/remove",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"user",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/user/delete",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"user",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "Create Role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"CUSTOMER\",\n  \"description\": \"Customer of the system\",\n  \"permissionIds\": [8, 9]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/role/create",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"role",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/role",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Attache Permission to Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"roleId\": 5,\n  \"permissionId\": 12\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/role/attachpermission",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"role",
+								"attachpermission"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Permission",
+			"item": [
+				{
+					"name": "Create Permission",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"delete:medicine\",\n  \"description\": \"Delete medicine record\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/permission/create",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"permission",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read All Permissions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/permission",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"permission"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medicine",
+			"item": [
+				{
+					"name": "Create Medicine",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Medicine 05\",\n  \"description\": \"Medicine description 05\",\n  \"quantity\": 100,\n  \"price\": 4500\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/medicine/create",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"medicine",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Medicine",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 5,\n  \"name\": \"Medicine 05\",\n  \"description\": \"Medicine description 05\",\n  \"quantity\": 150,\n  \"price\": 500\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/medicine/update",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"medicine",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Medicines",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/medicine",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"medicine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Medicine",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{version}}/medicine/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"medicine",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Soft Delete Medicine",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/medicine/remove",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"medicine",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Medicine",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{version}}/medicine/delete",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{version}}",
+								"medicine",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
